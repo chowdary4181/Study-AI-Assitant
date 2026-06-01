@@ -1,26 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Generate Mock Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mock Test Generator</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.9);
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #5b4bdb;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .features {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        .features p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: white;
+            opacity: 0.9;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+        }
+
+        @media(max-width: 600px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>AI Mock Test Generator</h1>
+    <div class="container">
 
-<form method="POST">
+        <div class="card">
 
-    <input
-        type="text"
-        name="topic"
-        placeholder="Enter Topic"
-        required>
+            <div class="icon">📝</div>
 
-    <button type="submit">
-        Generate Test
-    </button>
+            <h1>AI Mock Test Generator</h1>
 
-</form>
+            <p class="subtitle">
+                Generate practice exams instantly for any subject or topic.
+            </p>
 
-</div>
+            <form method="POST">
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        name="topic"
+                        placeholder="📚 Enter Topic (e.g., Python, DBMS, Machine Learning)"
+                        required>
+                </div>
+
+                <button type="submit">
+                    🚀 Generate Mock Test
+                </button>
+
+            </form>
+
+            <div class="features">
+                <p>✅ AI-generated questions</p>
+                <p>✅ Topic-based assessment</p>
+                <p>✅ Quick exam preparation</p>
+                <p>✅ Smart practice sessions</p>
+            </div>
+
+            <a href="/" class="back-btn">
+                ⬅ Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>
