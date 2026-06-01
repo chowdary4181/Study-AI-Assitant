@@ -1,52 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study AI Assistant</title>
 
-<title>Study AI Assistant</title>
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .navbar h2 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .menu a {
+            text-decoration: none;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            transition: 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+
+        .feature .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="navbar">
-<h2>📚 Study AI Assistant</h2>
-</div>
+    <div class="navbar">
+        <h2>🚀 Study AI Assistant</h2>
+    </div>
 
-<div class="container">
+    <div class="container">
+        <div class="menu">
 
-<div class="menu">
+            <a href="/summary">
+                <div class="feature">
+                    <div class="icon">📄</div>
+                    <h3>PDF Summarizer</h3>
+                    <p>Convert lengthy PDFs into concise study notes.</p>
+                </div>
+            </a>
 
-<a href="/summary">
-<div class="feature">
-<h3>📄 PDF Summarizer</h3>
-</div>
-</a>
+            <a href="/quiz">
+                <div class="feature">
+                    <div class="icon">❓</div>
+                    <h3>Quiz Generator</h3>
+                    <p>Create smart quizzes instantly from your content.</p>
+                </div>
+            </a>
 
-<a href="/quiz">
-<div class="feature">
-<h3>❓ Quiz Generator</h3>
-</div>
-</a>
+            <a href="/planner">
+                <div class="feature">
+                    <div class="icon">📅</div>
+                    <h3>Study Planner</h3>
+                    <p>Organize your learning schedule efficiently.</p>
+                </div>
+            </a>
 
-<a href="/planner">
-<div class="feature">
-<h3>📅 Study Planner</h3>
-</div>
-</a>
+            <a href="/mocktest">
+                <div class="feature">
+                    <div class="icon">📝</div>
+                    <h3>Mock Test</h3>
+                    <p>Practice with AI-generated examination papers.</p>
+                </div>
+            </a>
 
-<a href="/mocktest">
-<div class="feature">
-<h3>📝 Mock Test</h3>
-</div>
-</a>
+        </div>
+    </div>
 
-</div>
-
-</div>
+    <div class="footer">
+        ✨ Learn Smarter with AI
+    </div>
 
 </body>
+
 </html>
