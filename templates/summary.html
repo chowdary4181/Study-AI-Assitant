@@ -1,56 +1,295 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI PDF Summarizer</title>
 
-<title>PDF Summarizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+            background:linear-gradient(
+                -45deg,
+                #11998e,
+                #38ef7d,
+                #4facfe,
+                #00f2fe
+            );
+            background-size:400% 400%;
+            animation:gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+        }
+
+        .container{
+            width:100%;
+            max-width:950px;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(255,255,255,0.2);
+            border-radius:30px;
+            padding:40px;
+            color:white;
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.2),
+                0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .hero{
+            text-align:center;
+            margin-bottom:35px;
+        }
+
+        .hero-icon{
+            font-size:85px;
+            margin-bottom:15px;
+            animation:float 3s ease-in-out infinite;
+        }
+
+        @keyframes float{
+            0%,100%{
+                transform:translateY(0);
+            }
+            50%{
+                transform:translateY(-10px);
+            }
+        }
+
+        .hero h1{
+            font-size:2.5rem;
+            margin-bottom:10px;
+        }
+
+        .hero p{
+            opacity:0.9;
+        }
+
+        label{
+            display:block;
+            margin-bottom:12px;
+            font-weight:600;
+            font-size:1rem;
+        }
+
+        .upload-box{
+            border:2px dashed rgba(255,255,255,0.5);
+            border-radius:20px;
+            padding:35px;
+            text-align:center;
+            background:rgba(255,255,255,0.08);
+            transition:0.3s;
+        }
+
+        .upload-box:hover{
+            background:rgba(255,255,255,0.15);
+        }
+
+        .upload-box p{
+            margin-bottom:15px;
+            font-size:1rem;
+        }
+
+        input[type="file"]{
+            width:100%;
+            padding:12px;
+            border-radius:12px;
+            background:white;
+            color:black;
+            cursor:pointer;
+        }
+
+        .submit-btn{
+            width:100%;
+            margin-top:25px;
+            padding:18px;
+            border:none;
+            border-radius:15px;
+            background:linear-gradient(
+                135deg,
+                #ffffff,
+                #f3f3f3
+            );
+            color:#11998e;
+            font-size:17px;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .submit-btn:hover{
+            transform:translateY(-4px);
+            box-shadow:0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:15px;
+            margin-top:25px;
+        }
+
+        .feature{
+            background:rgba(255,255,255,0.12);
+            padding:15px;
+            border-radius:15px;
+            text-align:center;
+        }
+
+        .feature h3{
+            font-size:1.4rem;
+            margin-bottom:5px;
+        }
+
+        .summary-card{
+            margin-top:25px;
+        }
+
+        .summary-title{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        pre{
+            background:rgba(0,0,0,0.15);
+            padding:20px;
+            border-radius:15px;
+            line-height:1.8;
+            white-space:pre-wrap;
+            word-wrap:break-word;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-top:25px;
+            padding:12px 20px;
+            border-radius:12px;
+            text-decoration:none;
+            color:white;
+            background:rgba(255,255,255,0.15);
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:rgba(255,255,255,0.25);
+        }
+
+        @media(max-width:768px){
+
+            .card{
+                padding:25px;
+            }
+
+            .hero h1{
+                font-size:2rem;
+            }
+
+            .hero-icon{
+                font-size:65px;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
 
-<div class="navbar">
-<h2>📄 PDF Summarizer</h2>
-</div>
-
 <div class="container">
 
-<div class="card">
+    <div class="card">
 
-<form
-method="POST"
-enctype="multipart/form-data">
+        <div class="hero">
+            <div class="hero-icon">📄</div>
+            <h1>AI PDF Summarizer</h1>
+            <p>
+                Upload your PDF and get a concise AI-generated summary within seconds.
+            </p>
+        </div>
 
-<label>Upload PDF</label>
+        <form method="POST" enctype="multipart/form-data">
 
-<input
-type="file"
-name="pdf"
-accept=".pdf"
-required>
+            <label>📤 Upload PDF Document</label>
 
-<button type="submit">
-Generate Summary
-</button>
+            <div class="upload-box">
+                <p>Drag & Drop or Select a PDF File</p>
 
-</form>
+                <input
+                    type="file"
+                    name="pdf"
+                    accept=".pdf"
+                    required>
+            </div>
 
-</div>
+            <button type="submit" class="submit-btn">
+                🚀 Generate Summary
+            </button>
 
-{% if result %}
+        </form>
 
-<div class="card">
+        <div class="features">
 
-<h3>Summary</h3>
+            <div class="feature">
+                <h3>⚡</h3>
+                <p>Fast Processing</p>
+            </div>
 
-<pre>{{ result }}</pre>
+            <div class="feature">
+                <h3>🧠</h3>
+                <p>AI Summary</p>
+            </div>
 
-</div>
+            <div class="feature">
+                <h3>📚</h3>
+                <p>Study Notes</p>
+            </div>
 
-{% endif %}
+            <div class="feature">
+                <h3>🎯</h3>
+                <p>Key Points</p>
+            </div>
+
+        </div>
+
+        {% if result %}
+        <div class="summary-card">
+
+            <h2 class="summary-title">
+                📋 Generated Summary
+            </h2>
+
+            <pre>{{ result }}</pre>
+
+        </div>
+        {% endif %}
+
+        <center>
+            <a href="/" class="back-btn">
+                ⬅ Back to Dashboard
+            </a>
+        </center>
+
+    </div>
 
 </div>
 
