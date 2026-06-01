@@ -7,7 +7,6 @@ load_dotenv()
 client = Groq(
     api_key=os.getenv("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")
 )
-
 def create_study_plan(subjects, days):
 
     prompt = f"""
