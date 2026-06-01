@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Result</title>
+</head>
+
+<body>
+
+<h1>Test Result</h1>
+
+<h2>
+
+Score:
+{{ score }}
+/
+{{ total }}
+
+</h2>
+
+{% if score >= total * 0.7 %}
+
+<h3>Passed</h3>
+
+{% else %}
+
+<h3>Needs Improvement</h3>
+
+{% endif %}
+
+<a href="/mocktest">
+
+Take Another Test
+
+</a>
+
+</body>
+
+</html>
