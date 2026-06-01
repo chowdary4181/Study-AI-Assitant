@@ -2,178 +2,505 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Mock Test Generator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+<title>AI Mock Test Portal</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+<style>
 
-        .container {
-            width: 100%;
-            max-width: 550px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border-radius: 25px;
-            padding: 40px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+body{
+    min-height:100vh;
+    padding:30px;
+    background:linear-gradient(
+        -45deg,
+        #667eea,
+        #764ba2,
+        #6a11cb,
+        #2575fc
+    );
+    background-size:400% 400%;
+    animation:gradientBG 12s ease infinite;
+}
 
-        .icon {
-            font-size: 70px;
-            margin-bottom: 15px;
-        }
+@keyframes gradientBG{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
 
-        h1 {
-            margin-bottom: 10px;
-            font-size: 2rem;
-        }
+.header{
+    text-align:center;
+    color:white;
+    margin-bottom:30px;
+}
 
-        .subtitle {
-            margin-bottom: 30px;
-            opacity: 0.9;
-            font-size: 0.95rem;
-        }
+.header h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
 
-        .input-group {
-            margin-bottom: 20px;
-        }
+.header p{
+    opacity:0.9;
+}
 
-        input[type="text"] {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            outline: none;
-            border-radius: 12px;
-            font-size: 16px;
-            background: rgba(255,255,255,0.9);
-        }
+.center{
+    text-align:center;
+}
 
-        input[type="text"]:focus {
-            box-shadow: 0 0 15px rgba(255,255,255,0.5);
-        }
+.start-btn{
+    padding:18px 40px;
+    border:none;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    color:#6a11cb;
+    background:white;
+    transition:.3s;
+}
 
-        button {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            background: #ffffff;
-            color: #5b4bdb;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
+.start-btn:hover{
+    transform:translateY(-4px);
+}
 
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
+.progress-wrapper{
+    max-width:900px;
+    margin:auto;
+    margin-bottom:20px;
+}
 
-        .features {
-            margin-top: 25px;
-            text-align: left;
-        }
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:rgba(255,255,255,.2);
+    border-radius:20px;
+    overflow:hidden;
+}
 
-        .features p {
-            margin: 8px 0;
-            font-size: 0.95rem;
-        }
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:white;
+    transition:.4s;
+}
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 25px;
-            text-decoration: none;
-            color: white;
-            opacity: 0.9;
-            transition: 0.3s;
-        }
+.question-card{
+    max-width:900px;
+    margin:20px auto;
+    padding:30px;
 
-        .back-btn:hover {
-            opacity: 1;
-        }
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
 
-        @media(max-width: 600px) {
-            .card {
-                padding: 30px 20px;
-            }
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,.2);
 
-            h1 {
-                font-size: 1.6rem;
-            }
-        }
-    </style>
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+.exam-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.badge{
+    background:rgba(255,255,255,.15);
+    padding:10px 18px;
+    border-radius:30px;
+    font-weight:600;
+}
+
+.question-title{
+    margin-bottom:20px;
+}
+
+.option{
+    display:block;
+    margin:12px 0;
+    padding:15px;
+    border-radius:12px;
+    background:rgba(255,255,255,.1);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:rgba(255,255,255,.2);
+}
+
+.option input{
+    margin-right:10px;
+}
+
+.btn{
+    padding:14px 25px;
+    border:none;
+    border-radius:12px;
+    margin:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.prev-btn{
+    background:#ef4444;
+    color:white;
+}
+
+.next-btn{
+    background:white;
+    color:#6a11cb;
+}
+
+.submit-btn{
+    background:#22c55e;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.coding-card{
+    max-width:900px;
+    margin:20px auto;
+    padding:30px;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,.2);
+
+    color:white;
+}
+
+.coding-card h2{
+    margin-bottom:15px;
+}
+
+.coding-card p{
+    margin-bottom:10px;
+    line-height:1.7;
+}
+
+textarea{
+    width:100%;
+    min-height:250px;
+    margin-top:15px;
+    border:none;
+    border-radius:15px;
+    padding:20px;
+    resize:vertical;
+}
+
+ul{
+    margin-left:25px;
+}
+
+@media(max-width:768px){
+
+    body{
+        padding:15px;
+    }
+
+    .header h1{
+        font-size:2rem;
+    }
+
+    .question-card,
+    .coding-card{
+        padding:20px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="header">
+    <h1>📝 AI Mock Test Portal</h1>
+    <p>MCQ + Coding Assessment Environment</p>
+</div>
 
-        <div class="card">
+{% if test %}
 
-            <div class="icon">📝</div>
+<div class="center">
+    <button
+        type="button"
+        class="start-btn"
+        id="startBtn"
+        onclick="startExam()">
+        🚀 Start Exam
+    </button>
+</div>
 
-            <h1>AI Mock Test Generator</h1>
+<div id="examContent" style="display:none;">
 
-            <p class="subtitle">
-                Generate practice exams instantly for any subject or topic.
-            </p>
-
-            <form method="POST">
-
-                <div class="input-group">
-                    <input
-                        type="text"
-                        name="topic"
-                        placeholder="📚 Enter Topic (e.g., Python, DBMS, Machine Learning)"
-                        required>
-                </div>
-
-                <button type="submit">
-                    🚀 Generate Mock Test
-                </button>
-
-            </form>
-
-            <div class="features">
-                <p>✅ AI-generated questions</p>
-                <p>✅ Topic-based assessment</p>
-                <p>✅ Quick exam preparation</p>
-                <p>✅ Smart practice sessions</p>
-            </div>
-
-            <a href="/" class="back-btn">
-                ⬅ Back to Dashboard
-            </a>
-
-        </div>
-
+<div class="progress-wrapper">
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
     </div>
+</div>
+
+<form id="examForm">
+
+<div id="questionContainer">
+
+{% for q in test["mcqs"] %}
+
+<div class="question-card question"
+style="{% if loop.index == 1 %}display:block{% else %}display:none{% endif %}">
+
+<div class="exam-top">
+
+<div class="badge" id="timer">
+⏳ 60:00
+</div>
+
+<div class="badge">
+⚠ Violations:
+<span id="violationCounter">0</span>/3
+</div>
+
+</div>
+
+<h3 class="question-title">
+Question {{ loop.index }}
+of
+{{ test["mcqs"]|length }}
+</h3>
+
+<p style="margin-bottom:20px;">
+<b>{{ q["question"] }}</b>
+</p>
+
+{% for option in q["options"] %}
+
+<label class="option">
+<input
+type="radio"
+name="q{{ loop.index }}"
+value="{{ option }}">
+{{ option }}
+</label>
+
+{% endfor %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="center">
+
+<button
+type="button"
+class="btn prev-btn"
+onclick="prevQuestion()">
+⬅ Previous
+</button>
+
+<button
+type="button"
+class="btn next-btn"
+onclick="nextQuestion()">
+Next ➡
+</button>
+
+</div>
+
+<div id="codingSection" style="display:none;">
+
+{% for c in test["coding"] %}
+
+<div class="coding-card">
+
+<h2>{{ c["title"] }}</h2>
+
+<p>{{ c["problem"] }}</p>
+
+<p>
+<b>Constraints:</b>
+{{ c["constraints"] }}
+</p>
+
+<p>
+<b>Sample Input:</b>
+{{ c["sample_input"] }}
+</p>
+
+<p>
+<b>Sample Output:</b>
+{{ c["sample_output"] }}
+</p>
+
+{% if c["test_cases"] %}
+
+<p><b>Test Cases:</b></p>
+
+<ul>
+{% for tc in c["test_cases"] %}
+<li>{{ tc }}</li>
+{% endfor %}
+</ul>
+
+{% endif %}
+
+<textarea
+rows="10"
+placeholder="Write your solution here..."></textarea>
+
+</div>
+
+{% endfor %}
+
+<div class="center">
+
+<button
+type="submit"
+class="btn submit-btn">
+✅ Submit Test
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+{% endif %}
+
+<script>
+
+let currentQuestion = 0;
+
+const questions =
+document.querySelectorAll(".question");
+
+function startExam(){
+
+    const elem =
+    document.documentElement;
+
+    if(elem.requestFullscreen){
+        elem.requestFullscreen();
+    }
+
+    document.getElementById("startBtn")
+    .style.display = "none";
+
+    document.getElementById("examContent")
+    .style.display = "block";
+
+    updateProgress();
+}
+
+function showQuestion(index){
+
+    questions.forEach((q)=>{
+        q.style.display="none";
+    });
+
+    questions[index].style.display="block";
+
+    updateProgress();
+}
+
+function updateProgress(){
+
+    let progress =
+    ((currentQuestion + 1)
+    / questions.length) * 100;
+
+    document.getElementById(
+    "progressFill"
+    ).style.width =
+    progress + "%";
+}
+
+function nextQuestion(){
+
+    if(currentQuestion <
+    questions.length - 1){
+
+        currentQuestion++;
+
+        showQuestion(
+        currentQuestion
+        );
+    }
+    else{
+
+        document.getElementById(
+        "questionContainer"
+        ).style.display="none";
+
+        document.getElementById(
+        "codingSection"
+        ).style.display="block";
+    }
+}
+
+function prevQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        showQuestion(
+        currentQuestion
+        );
+    }
+}
+
+let totalSeconds = 60 * 60;
+
+setInterval(()=>{
+
+    let mins =
+    Math.floor(totalSeconds / 60);
+
+    let secs =
+    totalSeconds % 60;
+
+    const timer =
+    document.getElementById("timer");
+
+    if(timer){
+
+        timer.innerHTML =
+        `⏳ ${mins}:${secs
+        .toString()
+        .padStart(2,'0')}`;
+    }
+
+    if(totalSeconds > 0){
+        totalSeconds--;
+    }
+
+},1000);
+
+</script>
 
 </body>
-
 </html>
